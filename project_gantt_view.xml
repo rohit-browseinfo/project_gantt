@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<openerp>
+<data>
+<menuitem name="Gantt View"
+            id="project.gantt_view"
+            parent="project.menu_project_management"/>
+        
+                    <!--   Project Gantt Form View -->
+		      <record model="ir.ui.view" id="view_project_gantt_view">
+                      <field name="name">project.gantt.form</field>
+                      <field name="model">project.gantt</field>
+                      <field name="type">form</field>
+                      <field name="arch" type="xml">
+		              <form string="form view" version="7.0">
+		              <sheet>
+                         <group>
+                           <field name="user_id"/> 
+                           <field name="date_starting"/>
+                           <field name="date_ending"/>
+                          <field name="progress_rates"/>
+                          </group>
+                          </sheet>
+                         </form>
+                        </field>
+		            </record>
+         <!--   Project Gantt tree View -->
+		      <record model="ir.ui.view" id="view_project_gantt_tree">
+                      <field name="name">project.gantt.tree</field>
+                      <field name="model">project.gantt</field>
+                      <field name="type">tree</field>
+                      <field name="arch" type="xml">
+		              <tree string="tree view" >
+		              
+                        
+                           <field name="user_id"/> 
+                           <field name="date_starting"/>
+                           <field name="date_ending"/>
+                          <field name="progress_rates"/>
+                          
+                          
+                         </tree>
+                        </field>
+		            </record>
+        
+        
+        
+    <!-- <record id="view_project_gantt_gantt" model="ir.ui.view">
+            <field name="name">project.gantt.gantt</field>
+            <field name="model">project.gantt</field>
+            <field name="arch" type="xml">
+               <!<gantt color="user_id" date_start="date_starting" date_end="date_ending" progress="progress_rates" default_group_by="user_id"  mode="week" string="Projects Gantt">
+                <level object="project.gantt" link="user_id" domain="[]">
+              <field name="user_id"/>
+            </level>>
+               </gantt>
+             <gantt date_start="date_starting" date_delay="progress_rates" progress="progress" string="Tasks" default_group_by="user_id">
+                </gantt> 
+            </field>
+        </record>
+                 
+                 -->
+                 
+            <record id="view_task_gantt" model="ir.ui.view">
+            <field name="name">project.gantt.gantt</field>
+            <field name="model">project.gantt</field>
+            <field name="arch" type="xml">
+                <gantt date_start="date_start" date_stop="date_end" progress="progress" string="Tasks" default_group_by="user_id">
+                </gantt>
+            </field>
+        </record>
+  
+            
+            
+             <record id="action_project_gantt" model="ir.actions.act_window">
+            <field name="res_model">project.gantt</field>
+            <field name="name">Project's Gantt</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form,gantt,tree</field>
+           <!--<field name="context">{
+            'gantt_view_ref' : 'project_gantt.view_project_gantt_view'
+        }</field>-->
+            
+       
+        </record>
+            
+    <menuitem action="action_project_gantt" id="menu_action_project_gantt" parent="project.menu_project_management"/>      
+
+   </data>
+</openerp>
+
+
